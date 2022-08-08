@@ -1,3 +1,3 @@
 # stock-widget
-click here [stock-widget](https://hasindusithmin.github.com/stock-widget).
+[website](https://hasindusithmin.github.io/stock-widget/).
 
