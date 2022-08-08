@@ -5,15 +5,25 @@ document.getElementById('myInput').ondblclick = () => {
 const markets = { 'Apple Inc': 'AAPL', 'Airbnb, Inc': 'ABNB', 'Adobe Inc': 'ADBE', 'Analog Devices, Inc': 'ADI', 'Automatic Data Processing, Inc': 'ADP', 'Autodesk, Inc': 'ADSK', 'American Electric Power Company, Inc': 'AEP', 'Align Technology, Inc': 'ALGN', 'Applied Materials, Inc': 'AMAT', 'Advanced Micro Devices, Inc': 'AMD', 'Amgen Inc': 'AMGN', 'Amazon': 'AMZN', 'ANSYS, Inc': 'ANSS', 'ASML Holding N': 'ASML', 'Activision Blizzard, Inc': 'ATVI', 'Broadcom Inc': 'AVGO', 'AstraZeneca PLC American Depositary Shares': 'AZN', 'Baidu, Inc': 'BIDU', 'Biogen Inc': 'BIIB', 'Booking Holdings Inc': 'BKNG', 'Cadence Design Systems, Inc': 'CDNS', 'Constellation Energy Corporation Common Stock': 'CEG', 'Charter Communications, Inc': 'CHTR', 'Comcast Corporation Class A Common Stock': 'CMCSA', 'Costco Wholesale Corporation Common Stock': 'COST', 'Copart, Inc': 'CPRT', 'CrowdStrike Holdings, Inc': 'CRWD', 'Cisco Systems, Inc': 'CSCO', 'CSX Corporation Common Stock': 'CSX', 'Cintas Corporation Common Stock': 'CTAS', 'Cognizant Technology Solutions Corporation Class A Common Stock': 'CTSH', 'Datadog, Inc': 'DDOG', 'Dollar Tree Inc': 'DLTR', 'DocuSign, Inc': 'DOCU', 'DexCom, Inc': 'DXCM', 'Electronic Arts Inc': 'EA', 'eBay Inc': 'EBAY', 'Exelon Corporation Common Stock': 'EXC', 'Fastenal Company Common Stock': 'FAST', 'Fiserv, Inc': 'FISV', 'Fortinet, Inc': 'FTNT', 'Gilead Sciences, Inc': 'GILD', 'Alphabet Inc': 'GOOGL', 'Honeywell International Inc': 'HON', 'IDEXX Laboratories, Inc': 'IDXX', 'Illumina, Inc': 'ILMN', 'Intel Corporation Common Stock': 'INTC', 'Intuit Inc': 'INTU', 'Intuitive Surgical, Inc': 'ISRG', 'JD': 'JD', 'Keurig Dr Pepper Inc': 'KDP', 'The Kraft Heinz Company Common Stock': 'KHC', 'KLA Corporation Common Stock': 'KLAC', 'Lucid Group, Inc': 'LCID', 'Lam Research Corporation Common Stock': 'LRCX', 'lululemon athletica inc': 'LULU', 'Marriott International Class A Common Stock': 'MAR', 'Microchip Technology Incorporated Common Stock': 'MCHP', 'Mondelez International, Inc': 'MDLZ', 'MercadoLibre, Inc': 'MELI', 'Meta Platforms, Inc': 'META', 'Monster Beverage Corporation': 'MNST', 'Moderna, Inc': 'MRNA', 'Marvell Technology, Inc': 'MRVL', 'Microsoft Corporation Common Stock': 'MSFT', 'Match Group, Inc': 'MTCH', 'Micron Technology, Inc': 'MU', 'Netflix, Inc': 'NFLX', 'NetEase, Inc': 'NTES', 'NVIDIA Corporation Common Stock': 'NVDA', 'NXP Semiconductors N': 'NXPI', 'Old Dominion Freight Line, Inc': 'ODFL', 'Okta, Inc': 'OKTA', "O'Reilly Automotive, Inc": 'ORLY', 'Palo Alto Networks, Inc': 'PANW', 'Paychex, Inc': 'PAYX', 'PACCAR Inc': 'PCAR', 'Pinduoduo Inc': 'PDD', 'PepsiCo, Inc': 'PEP', 'PayPal Holdings, Inc': 'PYPL', 'QUALCOMM Incorporated Common Stock': 'QCOM', 'Regeneron Pharmaceuticals, Inc': 'REGN', 'Ross Stores, Inc': 'ROST', 'Starbucks Corporation Common Stock': 'SBUX', 'Seagen Inc': 'SGEN', 'Sirius XM Holdings Inc': 'SIRI', 'Synopsys, Inc': 'SNPS', 'Splunk Inc': 'SPLK', 'Skyworks Solutions, Inc': 'SWKS', 'Atlassian Corporation Plc Class A Ordinary Shares': 'TEAM', 'T-Mobile US, Inc': 'TMUS', 'Tesla, Inc': 'TSLA', 'Texas Instruments Incorporated Common Stock': 'TXN', 'Verisk Analytics, Inc': 'VRSK', 'VeriSign, Inc': 'VRSN', 'Vertex Pharmaceuticals Incorporated Common Stock': 'VRTX', 'Walgreens Boots Alliance, Inc': 'WBA', 'Workday, Inc': 'WDAY', 'Xcel Energy Inc': 'XEL', 'Zoom Video Communications, Inc': 'ZM', 'Zscaler, Inc': 'ZS' }
 document.querySelector('form').onsubmit = e => {
     e.preventDefault()
-    if (document.getElementById('myscript')) document.getElementById('stock-widget').removeChild(document.getElementById('myscript'))
+    if (document.getElementById('profile-script')) document.getElementById('stock-widget').removeChild(document.getElementById('profile-script'))
+    if (document.getElementById('overview_script')) document.getElementById('stock-widget').removeChild(document.getElementById('overview-script'))
     const market = e.target.market.value;
     const symbol = markets[market]
-    const script = document.createElement('script')
-    script.async = true
-    script.id = 'myscript'
-    script.src = 'https://s3.tradingview.com/external-embedding/embed-widget-symbol-profile.js'
-    script.innerText = JSON.stringify({ "symbol": `NASDAQ:${symbol}`, "width": 480, "height": 650, "colorTheme": "light", "isTransparent": true, "locale": "in" })
-    document.getElementById('stock-widget').appendChild(script)
+    const profile_script = document.createElement('script')
+    const overview_script = document.createElement('script')
+
+    // profile_script.async = true
+
+    profile_script.id = 'profile-script'
+    overview_script.id = 'overview-script'
+
+    profile_script.src = 'https://s3.tradingview.com/external-embedding/embed-widget-symbol-profile.js'
+
+    profile_script.innerText = JSON.stringify({ "symbol": `NASDAQ:${symbol}`, "width": 480, "height": 650, "colorTheme": "light", "isTransparent": true, "locale": "in" })
+    const sym = JSON.stringify({ "symbols": [ [ `${market}`, `${symbol}|1D `] ], "chartOnly": false, "width": 1000, "height": 500, "locale": "en", "colorTheme": "light", "autosize": false, "showVolume": false, "hideDateRanges": false, "scalePosition": "right", "scaleMode": "Normal", "fontFamily": "-apple-system, BlinkMacSystemFont, Trebuchet MS, Roboto, Ubuntu, sans-serif", "noTimeScale": false, "valuesTracking": "1", "chartType": "line", "fontColor": "#787b86", "gridLineColor": "rgba(42, 46, 57, 0.06)", "backgroundColor": "#ffffff", "container_id": "tradingview_a9b44" })
+    overview_script.innerText = `new TradingView.MediumWidget( ${sym} )`;
+    document.getElementById('stock-widget').appendChild(overview_script)
+    document.getElementById('stock-widget').appendChild(profile_script)
 }
 function autocomplete(inp, arr) {
     /*the autocomplete function takes two arguments,
