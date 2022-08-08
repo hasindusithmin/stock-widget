@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Company Profile</title>
+    <link rel="stylesheet" href="./index.css">
+</head>
+
+<body>
+    <div>
+        <h1 style='text-align: center;font-family: "Lucida Console", "Courier New", monospace;'>
+            Company Profile Widget
+        </h1>
+        <p style="border: 1px dotted;padding:10px 10px">
+            The Nasdaq Stock Market is an American stock exchange based in New York City. It is ranked second on the
+            list of stock exchanges by market capitalization of shares traded, behind the New York Stock Exchange.
+        </p>
+    </div>
+    <hr>
+    <div class="center">
+        <form autocomplete="off" method="post">
+            <div class="autocomplete" style="width:300px;">
+                <input id="myInput" type="text" name="market" placeholder="enter here to company" required
+                    title="double click to clear">
+            </div>
+            <input type="submit">
+        </form>
+        <div class="tradingview-widget-container" id="stock-widget">
+            <div class="tradingview-widget-container__widget"></div>
+        </div>
+    </div>
+    <script src="./index.js"></script>
+</body>
+
+</html>
